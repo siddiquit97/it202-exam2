@@ -11,17 +11,14 @@
   <body>
       <ul class="list-group">
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            
+            <h5 class = "card-title">Card Title</h5>
             <span class="badge badge-primary badge-pill">14</span>
           </li>
       </ul>
   </body>
     
     
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-
-	</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     
     
     <script>
@@ -29,13 +26,31 @@
             
             var url = "https://data.cityofchicago.org/resource/xzkq-xp2w.json?$select=department,count(department)&$group=department";
             $.get(url, function(response) {
-        
-                console.log(response);
+                //console.log(response);
+                
+                 var data = response;
+            
+                $.each(data, function(i, v){
+                   //console.log(i, v); 
+                   
+                    var clone = $(".list-group").clone();
+                    clone.find(".list-group-item").text(v.department);
+                    clone.find("badge").text(v.count_department);
+                    
+                    clone.removeClass(".list-group")
+                    $("body").append(clone);
+                 
+                   
+                });
+                
+                
+                
+                
+                
+                
             });
             
-            var data = response;
-            
-            $.each(data)
+           
     
         });
 
