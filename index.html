@@ -10,10 +10,12 @@
   </head>
   <body>
       <ul class="list-group">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <h5 class = "card-title">Card Title</h5>
-            <span class="badge badge-primary badge-pill">14</span>
-          </li>
+          <div class = "my-item">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <h5 class = "card-title">Card Title</h5>
+                <span class="num-dep badge badge-primary badge-pill">14</span>
+              </li>
+          </div>  
       </ul>
   </body>
     
@@ -31,27 +33,18 @@
                  var data = response;
             
                 $.each(data, function(i, v){
-                   //console.log(i, v); 
+                   console.log(i, v); 
                    
-                    var clone = $(".list-group").clone();
+                    var clone = $(".my-item").clone();
                     clone.find(".list-group-item").text(v.department);
-                    clone.find("badge").text(v.count_department);
+                    clone.find(".num-dep").text(v.count_department);
                     
-                    clone.removeClass(".list-group")
-                    $("body").append(clone);
-                 
-                   
-                });
-                
-                
-                
-                
-                
-                
+                    clone.removeClass("my-item");
+                    clone.removeClass("num-dep");
+                    
+                    $("body").append(clone);        
+                });        
             });
-            
-           
-    
         });
 
 	</script>
